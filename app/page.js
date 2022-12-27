@@ -1,12 +1,80 @@
 "use client";
 
-import { Box, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Text,
+} from "@chakra-ui/react";
+import { useRef, useState } from "react";
+import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
+  const inputRef = useRef(null);
+  const [error, setError] = useState(null);
+
+  const clickHandler = () => {
+    if (inputRef?.current?.value?.trim()?.length) {
+    } else {
+      setError("Please Enter valid github username");
+      inputRef.current.value = "";
+    }
+  };
+
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center" p="1rem">
-        <Box>Hello world</Box>
+        <Box mt="3rem" textAlign="center">
+          <Heading mt="3rem" as="h1" fontSize="48px">
+            #GithubWrapped
+          </Heading>
+          <Text fontSize="20px" fontWeight="600" mt="8px">
+            How did you contribute in 2022
+          </Text>
+          <Text mt="5rem">
+            Get your Total contriburtion, Active days, longest streak, Most
+            active day, month and more
+          </Text>
+          <InputGroup m="1rem auto" w="20rem">
+            <InputLeftElement pointerEvents="none" children={<FaGithub />} />
+            <Input
+              ref={inputRef}
+              fontWeight="600"
+              outline="0px"
+              borderColor="rgb(59, 55, 191)"
+              _focus={{
+                borderColor: "rgb(59, 55, 191)",
+                borderWidth: "2px",
+                outline: "0px",
+                boxShadow: "none",
+              }}
+              _hover={{ borderColor: "rgb(59, 55, 191)" }}
+              placeholder="Enter your Github Username"
+              onChange={() => {
+                error && setError(null);
+              }}
+            />
+          </InputGroup>
+          {error && (
+            <Text color="red.500" fontWeight="500">
+              {error}
+            </Text>
+          )}
+          <Button
+            mt="1rem"
+            bg="rgb(59, 55, 191)"
+            color="white"
+            _hover={{ bg: "rgb(59, 55, 191)" }}
+            _active={{ bg: "rgb(59, 55, 191)" }}
+            w="20rem"
+            onClick={clickHandler}
+          >
+            Get My Github Wrapped
+          </Button>
+        </Box>
       </Box>
     </>
   );
