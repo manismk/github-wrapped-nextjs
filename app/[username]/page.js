@@ -25,7 +25,6 @@ const User = (page) => {
     setLoading(true);
     (async () => {
       try {
-        console.log("page", page.params.username);
         const res = await fetch("/api/getData", {
           method: "POST",
           headers: {
