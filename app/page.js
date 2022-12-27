@@ -9,15 +9,18 @@ import {
   InputLeftElement,
   Text,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
   const inputRef = useRef(null);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   const clickHandler = () => {
     if (inputRef?.current?.value?.trim()?.length) {
+      router.push(`/${inputRef?.current?.value?.trim()}`);
     } else {
       setError("Please Enter valid github username");
       inputRef.current.value = "";
