@@ -6,7 +6,7 @@ export const Error = ({ error = "Something Went Wrong!" }) => {
   return (
     <Box textAlign="center" py={10} px={6}>
       <Heading as="h2" size="xl" mb="2rem" textTransform="capitalize">
-        {error}
+        {error.length < 100 ? error : "Something went wrong!"}
       </Heading>
 
       <Button
