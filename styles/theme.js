@@ -6,6 +6,7 @@ export const theme = extendTheme({
       body: {
         bg: "#f3f4fa",
         color: "rgb(59, 55, 191)",
+        fontFamily: `'Inter', sans-serif`,
       },
     },
   },
