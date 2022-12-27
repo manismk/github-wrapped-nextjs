@@ -1,13 +1,26 @@
 "use client";
-import { Box, Flex, Spinner } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  IconButton,
+  Link,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 import { Error } from "../../components/Error";
 import { Result } from "../../components/Result";
+import { HiDownload } from "react-icons/hi";
+import { useRouter } from "next/navigation";
+import { exportComponentAsPNG } from "react-component-export-image";
 
 const User = (page) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const router = useRouter();
+  const resultRef = useRef(null);
   useEffect(() => {
     setLoading(true);
     (async () => {
@@ -54,9 +67,34 @@ const User = (page) => {
     <Box display="flex" justifyContent="center" alignItems="center" p="1rem">
       <Box mt="3rem" textAlign="center">
         <Box boxShadow="xl">
-          <Box p="2rem" pb="0.5rem" bg="#f3f4fa">
+          <Box p="2rem" pb="0.5rem" bg="#f3f4fa" ref={resultRef}>
             <Result data={data} />
+            <Text fontSize="12px" my="6px" textAlign="end">
+              Get Yours @
+              <Link href="https://githubwrapped.netlify.app">
+                githubwrapped.netlify.app
+              </Link>
+            </Text>
           </Box>
+          <Flex pl="2rem" pb="1rem" gap="12px">
+            <IconButton
+              bg="#fff"
+              _hover={{ background: "#fff" }}
+              icon={<HiDownload />}
+              onClick={() =>
+                exportComponentAsPNG(resultRef, {
+                  fileName: `Githubwrapped-${data?.username}-2022`,
+                })
+              }
+            />
+            <Button
+              bg="#fff"
+              _hover={{ background: "#fff" }}
+              onClick={() => router.push("/")}
+            >
+              check for another user
+            </Button>
+          </Flex>
         </Box>
       </Box>
     </Box>
