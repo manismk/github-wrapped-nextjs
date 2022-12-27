@@ -1,11 +1,13 @@
 "use client";
 import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Error } from "../../components/Error";
 import { Result } from "../../components/Result";
 
 const User = (page) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     setLoading(true);
     (async () => {
@@ -24,11 +26,11 @@ const User = (page) => {
           setLoading(false);
         } else {
           const text = await res.text();
-          console.log("res", text);
+          setError(text);
           setLoading(false);
         }
       } catch (e) {
-        console.log("err", e);
+        setError("Something went wrong!");
         setLoading(false);
       }
     })();
@@ -38,6 +40,13 @@ const User = (page) => {
     return (
       <Flex w="100vw" h="100vh" alignItems="center" justifyContent="center">
         <Spinner color="rgb(59, 55, 191)" />
+      </Flex>
+    );
+
+  if (error || !data.username)
+    return (
+      <Flex w="100vw" h="100vh" alignItems="center" justifyContent="center">
+        <Error error={error ? error : "Something went wrong!"} />
       </Flex>
     );
 
