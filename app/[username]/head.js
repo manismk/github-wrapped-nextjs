@@ -1,7 +1,9 @@
-export default function Head({ params }) {
+"use client";
+export default function Head() {
+  const username = window.location.pathname.split("/")[1];
   return (
     <>
-      <title>Github Wrapped</title>
+      <title>{`${username} Github Wrapped`}</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <link rel="icon" href="/favicon.ico" />
       <meta
@@ -23,15 +25,15 @@ export default function Head({ params }) {
       />
       <meta
         name="twitter:image:src"
-        content={`https://githubwrapped.netlify.app/api/og?username=${params.username}`}
+        content={`https://githubwrapped.netlify.app/api/og?username=${username}`}
       />
       <meta
         property="twitter:image"
-        content={`https://githubwrapped.netlify.app/api/og?username=${params.username}`}
+        content={`https://githubwrapped.netlify.app/api/og?username=${username}`}
       />
       <meta
         property="og:image"
-        content={`https://githubwrapped.netlify.app/api/og?username=${params.username}`}
+        content={`https://githubwrapped.netlify.app/api/og?username=${username}`}
       />
     </>
   );
