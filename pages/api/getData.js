@@ -44,7 +44,9 @@ const parseContributions = (htmlSrc, username) => {
     ?.innerHTML?.trim();
   const dateWiseData = Array.from(days).map((day) => ({
     date: day.getAttribute("data-date"),
-    count: day.getAttribute("data-count"),
+    count: isNaN(+day.innerHTML.split(" ")[0])
+      ? 0
+      : +day.innerHTML.split(" ")[0],
     colorLevel: day.getAttribute("data-level"),
     day: dayjs(day.getAttribute("data-date")).day(),
     month: dayjs(day.getAttribute("data-date")).month(),
