@@ -36,7 +36,7 @@ const getHtml = async (username) => {
 const parseContributions = (htmlSrc, username) => {
   const { document } = new JSDOM(htmlSrc).window;
   const days = document.querySelectorAll(
-    "svg.js-calendar-graph-svg rect.ContributionCalendar-day"
+    ".ContributionCalendar-day"
   );
   const userImgUrl = document.querySelector(["[itemprop='image'] img"])?.src;
   const actualName = document
