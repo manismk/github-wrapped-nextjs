@@ -34,23 +34,31 @@ const getHtml = async (username) => {
 };
 
 const parseContributions = (htmlSrc, username) => {
-  const { document } = new JSDOM(htmlSrc).window;
-  const days = document.querySelectorAll(
-    ".ContributionCalendar-day"
-  );
+  const window = new JSDOM(htmlSrc).window;
+
+  const document = window.document;
+  const tooltips = document.querySelectorAll("tool-tip");
+  const tooltipsArr = Array.from(tooltips).map((tooltip) => ({
+    for: tooltip.getAttribute("for"),
+    text: tooltip.innerHTML,
+  }));
+  const days = document.querySelectorAll(".ContributionCalendar-day");
   const userImgUrl = document.querySelector(["[itemprop='image'] img"])?.src;
   const actualName = document
     .querySelector(["[itemprop='name']"])
     ?.innerHTML?.trim();
-  const dateWiseData = Array.from(days).map((day) => ({
-    date: day.getAttribute("data-date"),
-    count: isNaN(+day.innerHTML.split(" ")[0])
-      ? 0
-      : +day.innerHTML.split(" ")[0],
-    colorLevel: day.getAttribute("data-level"),
-    day: dayjs(day.getAttribute("data-date")).day(),
-    month: dayjs(day.getAttribute("data-date")).month(),
-  }));
+  const dateWiseData = Array.from(days).map((day) => {
+    const tooltipText = tooltipsArr.find((tool) => tool?.for == day?.id)?.text;
+    return {
+      date: day.getAttribute("data-date"),
+      count: isNaN(+tooltipText?.split(" ")[0])
+        ? 0
+        : +tooltipText?.split(" ")[0],
+      colorLevel: day.getAttribute("data-level"),
+      day: dayjs(day.getAttribute("data-date")).day(),
+      month: dayjs(day.getAttribute("data-date")).month(),
+    };
+  });
 
   const totalCount = dateWiseData.reduce((acc, curr) => acc + +curr.count, 0);
   const maxCount = dateWiseData.reduce(
