@@ -17,10 +17,12 @@ export default function Home() {
   const inputRef = useRef(null);
   const [error, setError] = useState(null);
   const router = useRouter();
+  const [isLoading, setLoading] = useState(false);
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
 
   const clickHandler = () => {
     if (inputRef?.current?.value?.trim()?.length) {
+      setLoading(true);
       router.push(`/${inputRef?.current?.value?.trim()}`);
     } else {
       setError("Please Enter valid github username");
@@ -75,6 +77,7 @@ export default function Home() {
             _active={{ bg: "rgb(59, 55, 191)" }}
             w="20rem"
             onClick={clickHandler}
+            isLoading={isLoading}
           >
             Get My Github Wrapped
           </Button>
