@@ -20,9 +20,10 @@ export default async (req, res) => {
   res.json(resObj);
 };
 const getHtml = async (username) => {
+  const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
   try {
     const page = await fetch(
-      `https://github.com/${username}?tab=overview&from=2022-12-01&to=2022-12-31`
+      `https://github.com/${username}?tab=overview&from=${currentYear}-12-01&to=${currentYear}-12-31`
     );
     if (page.status !== 200 && page.status === 404)
       throw new Error("Profile not found");

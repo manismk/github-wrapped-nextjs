@@ -6,11 +6,12 @@ import { MonthWiseGraph } from "./MonthWiseData";
 import { WeekWiseGraph } from "./WeekWiseData";
 
 export const Result = ({ data }) => {
+  const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
   return (
     <Box w="750px" color="#000">
       <Flex justifyContent="space-between" alignItems="center">
         <Text fontWeight="600" fontSize="22px" color="rgb(59, 55, 191)">
-          #GithubWrapped - 2022
+          #GithubWrapped - {currentYear}
         </Text>
 
         <Flex alignItems="center" gap="12px">

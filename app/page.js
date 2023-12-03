@@ -17,6 +17,7 @@ export default function Home() {
   const inputRef = useRef(null);
   const [error, setError] = useState(null);
   const router = useRouter();
+  const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
 
   const clickHandler = () => {
     if (inputRef?.current?.value?.trim()?.length) {
@@ -35,7 +36,7 @@ export default function Home() {
             #GithubWrapped
           </Heading>
           <Text fontSize="20px" fontWeight="600" mt="8px">
-            How did you contribute in 2022
+            How did you contribute in {currentYear}
           </Text>
           <Text mt="5rem">
             Get your Total contriburtion, Active days, longest streak, Most

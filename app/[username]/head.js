@@ -1,4 +1,5 @@
 export default function Head({ params }) {
+  const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
   return (
     <>
       <title>{`Github Wrapped`}</title>
@@ -6,7 +7,7 @@ export default function Head({ params }) {
       <link rel="icon" href="/favicon.ico" />
       <meta
         name="description"
-        content={`GithubWrapped 2022 -  Get your Total contriburtion, Active days, longest streak, Most active day, month and more`}
+        content={`GithubWrapped ${currentYear} -  Get your Total contriburtion, Active days, longest streak, Most active day, month and more`}
       />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://githubwrapped.netlify.app/" />
@@ -19,7 +20,7 @@ export default function Head({ params }) {
       <meta property="twitter:title" content="Github Wrapped" />
       <meta
         property="twitter:description"
-        content="GithubWrapped 2022 -  Get your Total contriburtion, Active days, longest streak, Most active day, month and more"
+        content={`GithubWrapped ${currentYear} -  Get your Total contriburtion, Active days, longest streak, Most active day, month and more`}
       />
       <meta
         name="twitter:image:src"
