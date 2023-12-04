@@ -1,6 +1,6 @@
 # Github Wrapped
 
-**Github wrapped - - Get your github contribution for the year**
+**Github wrapped - Get your github contribution for the year**
 
 ## Demo
 
