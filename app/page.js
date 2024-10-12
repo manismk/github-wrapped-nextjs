@@ -40,7 +40,7 @@ export default function Home() {
           <Text fontSize="20px" fontWeight="600" mt="8px">
             How did you contribute in {currentYear}
           </Text>
-          <Text mt="5rem">
+          <Text mt="5rem" fontSize="20px" fontWeight="600">
             Get your Total contriburtion, Active days, longest streak, Most
             active day, month and more
           </Text>

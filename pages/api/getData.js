@@ -15,7 +15,9 @@ export default async (req, res) => {
     res.status(422).send(srcHtml?.message);
     return;
   }
-  const resObj = parseContributions(srcHtml, username);
+  const userRes = await fetch(`https://api.github.com/users/${username}`);
+  const userDetails = await userRes.json();
+  const resObj = parseContributions(srcHtml, username, userDetails);
   console.log("user", username);
   res.json(resObj);
 };
@@ -23,7 +25,7 @@ const getHtml = async (username) => {
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
   try {
     const page = await fetch(
-      `https://github.com/${username}?tab=overview&from=${currentYear}-12-01&to=${currentYear}-12-31`
+      `https://github.com/users/${username}/contributions?from=${currentYear}-12-01&to=${currentYear}-12-31`
     );
     if (page.status !== 200 && page.status === 404)
       throw new Error("Profile not found");
@@ -34,7 +36,7 @@ const getHtml = async (username) => {
   }
 };
 
-const parseContributions = (htmlSrc, username) => {
+const parseContributions = (htmlSrc, username, userDetails) => {
   const window = new JSDOM(htmlSrc).window;
 
   const document = window.document;
@@ -44,10 +46,8 @@ const parseContributions = (htmlSrc, username) => {
     text: tooltip.innerHTML,
   }));
   const days = document.querySelectorAll(".ContributionCalendar-day");
-  const userImgUrl = document.querySelector(["[itemprop='image'] img"])?.src;
-  const actualName = document
-    .querySelector(["[itemprop='name']"])
-    ?.innerHTML?.trim();
+  const userImgUrl = userDetails?.avatar_url || "";
+  const actualName = userDetails?.name || "";
   const dateWiseData = Array.from(days).map((day) => {
     const tooltipText = tooltipsArr.find((tool) => tool?.for == day?.id)?.text;
     return {
