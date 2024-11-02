@@ -5,12 +5,14 @@ import { Error } from "../../components/Error";
 import { Result } from "../../components/Result";
 import { BottomBar } from "../../components/BottomBar";
 import { Brand } from "../../components/Brand";
+import { useRouter } from "next/navigation";
 
 const User = (page) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const resultRef = useRef(null);
+  const router = useRouter();
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
 
   useEffect(() => {
@@ -66,6 +68,7 @@ const User = (page) => {
             currentYear={currentYear}
             data={data}
             resultRef={resultRef}
+            onAnotherUserClick={() => router.push("/")}
           />
         </Box>
       </Box>
