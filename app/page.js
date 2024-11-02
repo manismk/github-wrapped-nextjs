@@ -103,6 +103,9 @@ export default function Home() {
               onChange={() => {
                 error && setError(null);
               }}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") clickHandler();
+              }}
             />
           </InputGroup>
           {error && (
