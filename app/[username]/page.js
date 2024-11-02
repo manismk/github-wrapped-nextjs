@@ -1,28 +1,15 @@
 "use client";
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Icon,
-  IconButton,
-  Link,
-  Spinner,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { Error } from "../../components/Error";
 import { Result } from "../../components/Result";
-import { HiDownload } from "react-icons/hi";
-import { useRouter } from "next/navigation";
-import { exportComponentAsPNG } from "react-component-export-image";
-import { FaTwitter } from "react-icons/fa";
+
+import { BottomBar } from "../../components/BottomBar";
 
 const User = (page) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const router = useRouter();
   const resultRef = useRef(null);
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
 
@@ -80,33 +67,11 @@ const User = (page) => {
               </Link>
             </Text>
           </Box>
-          <Flex pl="2rem" pb="1rem" gap="12px">
-            <IconButton
-              bg="#fff"
-              _hover={{ background: "#fff" }}
-              icon={<HiDownload />}
-              onClick={() =>
-                exportComponentAsPNG(resultRef, {
-                  fileName: `Githubwrapped-${data?.username}-${currentYear}`,
-                })
-              }
-            />
-            <Link
-              href={`https://twitter.com/intent/tweet?original_referer=https://githubwrapped.netlify.app&text=In ${currentYear}, I made over ${data?.totalCount} commits, was active ${data?.activeDaysCount}/365 days with longest streak of ${data?.longestStreak?.streak}days! Check your %23GithubWrapped %23GithubWrapped${currentYear} 👇&tw_p=tweetbutton&url=githubwrapped.netlify.app`}
-              target="_blank"
-            >
-              <Center bg="#fff" w="40px" h="40px" borderRadius="5px">
-                <Icon as={FaTwitter} />
-              </Center>
-            </Link>
-            <Button
-              bg="#fff"
-              _hover={{ background: "#fff" }}
-              onClick={() => router.push("/")}
-            >
-              check for another user
-            </Button>
-          </Flex>
+          <BottomBar
+            currentYear={currentYear}
+            data={data}
+            resultRef={resultRef}
+          />
         </Box>
       </Box>
     </Box>
