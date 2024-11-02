@@ -1,10 +1,10 @@
 "use client";
-import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { Error } from "../../components/Error";
 import { Result } from "../../components/Result";
-
 import { BottomBar } from "../../components/BottomBar";
+import { Brand } from "../../components/Brand";
 
 const User = (page) => {
   const [data, setData] = useState({});
@@ -60,12 +60,7 @@ const User = (page) => {
         <Box boxShadow="xl">
           <Box p="2rem" pb="0.5rem" bg="#f3f4fa" ref={resultRef}>
             <Result data={data} />
-            <Text fontSize="12px" my="6px" textAlign="end">
-              Get Yours @
-              <Link href="https://githubwrapped.netlify.app">
-                githubwrapped.netlify.app
-              </Link>
-            </Text>
+            <Brand />
           </Box>
           <BottomBar
             currentYear={currentYear}
