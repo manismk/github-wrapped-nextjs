@@ -45,7 +45,7 @@ export default function Home() {
         setLoading(false);
       }
     } else {
-      setError("Please Enter valid github username");
+      setError("Please enter valid github username");
       inputRef.current.value = "";
     }
   };
@@ -82,7 +82,7 @@ export default function Home() {
             How did you contribute in {currentYear}
           </Text>
           <Text mt="5rem" fontSize="20px" fontWeight="600">
-            Get your Total contriburtion, Active days, longest streak, Most
+            Get your total contriburtion, active days, longest streak, most
             active day, month and more
           </Text>
           <InputGroup m="1rem auto" w="20rem">
@@ -99,7 +99,7 @@ export default function Home() {
                 boxShadow: "none",
               }}
               _hover={{ borderColor: "rgb(59, 55, 191)" }}
-              placeholder="Enter your Github Username"
+              placeholder="Enter your github username"
               onChange={() => {
                 error && setError(null);
               }}
@@ -120,7 +120,7 @@ export default function Home() {
             onClick={clickHandler}
             isLoading={isLoading}
           >
-            Get My Github Wrapped
+            Get my github wrapped
           </Button>
         </Box>
       </Box>
