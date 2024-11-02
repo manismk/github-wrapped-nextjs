@@ -2,11 +2,13 @@ import { Button, Center, Flex, Icon, IconButton, Link } from "@chakra-ui/react";
 import { exportComponentAsPNG } from "react-component-export-image";
 import { HiDownload } from "react-icons/hi";
 import { FaTwitter } from "react-icons/fa";
-import { useRouter } from "next/navigation";
 
-export const BottomBar = ({ currentYear, data, resultRef }) => {
-  const router = useRouter();
-
+export const BottomBar = ({
+  currentYear,
+  data,
+  resultRef,
+  onAnotherUserClick = () => {},
+}) => {
   return (
     <Flex pl="2rem" pb="1rem" gap="12px">
       <IconButton
@@ -30,7 +32,7 @@ export const BottomBar = ({ currentYear, data, resultRef }) => {
       <Button
         bg="#fff"
         _hover={{ background: "#fff" }}
-        onClick={() => router.push("/")}
+        onClick={onAnotherUserClick}
       >
         check for another user
       </Button>
