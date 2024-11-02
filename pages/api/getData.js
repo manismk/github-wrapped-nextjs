@@ -39,6 +39,8 @@ const getHtml = async (username) => {
 const parseContributions = (htmlSrc, username, userDetails) => {
   const window = new JSDOM(htmlSrc).window;
 
+  if (!window) return null;
+
   const document = window.document;
   const tooltips = document.querySelectorAll("tool-tip");
   const tooltipsArr = Array.from(tooltips).map((tooltip) => ({
