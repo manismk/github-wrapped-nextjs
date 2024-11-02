@@ -34,7 +34,7 @@ export const Result = ({ data }) => {
           p="16px"
         >
           <Text fontWeight="600" color="rgb(59, 55, 191)">
-            Overall Stats
+            Overall stats
           </Text>
           <Flex gap="12px">
             <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
@@ -70,7 +70,7 @@ export const Result = ({ data }) => {
                 {data?.activeDaysCount}
               </Text>
               <Text fontSize="12px" color="#aaa" fontWeight="600">
-                Total Active Days
+                Total active days
               </Text>
             </Flex>
           </Flex>
@@ -87,7 +87,7 @@ export const Result = ({ data }) => {
                 {data?.longestStreak?.streak}
               </Text>
               <Text fontSize="12px" color="#aaa" fontWeight="600">
-                Longest Streak
+                Longest streak
               </Text>
             </Flex>
           </Flex>
@@ -96,7 +96,7 @@ export const Result = ({ data }) => {
       <Grid gap="10px" gridTemplateColumns="65fr 35fr" mt="18px" h="200px">
         <Box bg="#fff" borderRadius="16px" p="8px">
           <Text mt="4px" mb="12px" fontWeight="600" color="rgb(59, 55, 191)">
-            Activity Stats
+            Activity stats
           </Text>
           <Grid gap="10px" gridTemplateColumns="1fr 1fr 1fr">
             <Flex
@@ -124,7 +124,7 @@ export const Result = ({ data }) => {
                   {data?.maxCount?.date}
                 </Text>
                 <Text fontSize="12px" color="#aaa" fontWeight="600">
-                  Most Activity Day
+                  Most activity day
                 </Text>
               </Flex>
             </Flex>
@@ -157,7 +157,7 @@ export const Result = ({ data }) => {
                   {data?.maxDayCount?.day}
                 </Text>
                 <Text fontSize="12px" color="#aaa" fontWeight="600">
-                  Most Active On
+                  Most active on
                 </Text>
               </Flex>
             </Flex>
@@ -190,7 +190,7 @@ export const Result = ({ data }) => {
                   {data?.maxMonthCount?.month}
                 </Text>
                 <Text fontSize="12px" color="#aaa" fontWeight="600">
-                  Most Active Month
+                  Most active month
                 </Text>
               </Flex>
             </Flex>
