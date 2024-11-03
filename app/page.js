@@ -25,7 +25,7 @@ export default function Home() {
       setLoading(true);
       router.push(`/${inputRef?.current?.value?.trim()}`);
     } else {
-      setError("Please Enter valid github username");
+      setError("Please enter valid github username");
       inputRef.current.value = "";
     }
   };
@@ -41,8 +41,7 @@ export default function Home() {
             How did you contribute in {currentYear}
           </Text>
           <Text mt="5rem" fontSize="20px" fontWeight="600">
-            Get your Total contriburtion, Active days, longest streak, Most
-            active day, month and more
+            Get your total contriburtion, active days, longest streak, most
           </Text>
           <InputGroup m="1rem auto" w="20rem">
             <InputLeftElement pointerEvents="none" children={<FaGithub />} />
@@ -58,9 +57,12 @@ export default function Home() {
                 boxShadow: "none",
               }}
               _hover={{ borderColor: "rgb(59, 55, 191)" }}
-              placeholder="Enter your Github Username"
+              placeholder="Enter your github username"
               onChange={() => {
                 error && setError(null);
+              }}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") clickHandler();
               }}
             />
           </InputGroup>
@@ -79,7 +81,7 @@ export default function Home() {
             onClick={clickHandler}
             isLoading={isLoading}
           >
-            Get My Github Wrapped
+            Get my github wrapped
           </Button>
         </Box>
       </Box>
