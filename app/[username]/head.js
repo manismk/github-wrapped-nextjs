@@ -24,15 +24,15 @@ export default function Head({ params }) {
       />
       <meta
         name="twitter:image:src"
-        content={`https://githubwrapped.netlify.app/api/og?username=`}
+        content={`https://githubwrapped.netlify.app/api/og?username=${params.username}`}
       />
       <meta
         property="twitter:image"
-        content={`https://githubwrapped.netlify.app/api/og?username=`}
+        content={`https://githubwrapped.netlify.app/api/og?username=${params.username}`}
       />
       <meta
         property="og:image"
-        content={`https://githubwrapped.netlify.app/api/og?username=`}
+        content={`https://githubwrapped.netlify.app/api/og?username=${params.username}`}
       />
     </>
   );
