@@ -1,7 +1,7 @@
 import { Button, Center, Flex, Icon, IconButton, Link } from "@chakra-ui/react";
-import { exportComponentAsPNG } from "react-component-export-image";
 import { HiDownload } from "react-icons/hi";
 import { FaTwitter } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 export const BottomBar = ({
   currentYear,
@@ -9,6 +9,14 @@ export const BottomBar = ({
   resultRef,
   onAnotherUserClick = () => {},
 }) => {
+  const [exportImage, setExportImage] = useState(null);
+
+  useEffect(() => {
+    import("react-component-export-image").then((module) => {
+      setExportImage(() => module.exportComponentAsPNG);
+    });
+  }, []);
+
   return (
     <Flex pl="2rem" pb="1rem" gap="12px">
       <IconButton
@@ -16,7 +24,7 @@ export const BottomBar = ({
         _hover={{ background: "#fff" }}
         icon={<HiDownload />}
         onClick={() =>
-          exportComponentAsPNG(resultRef, {
+          exportImage(resultRef, {
             fileName: `Githubwrapped-${data?.username}-${currentYear}`,
           })
         }

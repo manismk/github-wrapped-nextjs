@@ -83,6 +83,7 @@ export default function Home() {
           </Text>
           <Text mt="5rem" fontSize="20px" fontWeight="600">
             Get your total contriburtion, active days, longest streak, most
+            active day, month and more
           </Text>
           <InputGroup m="1rem auto" w="20rem">
             <InputLeftElement pointerEvents="none" children={<FaGithub />} />
@@ -122,7 +123,7 @@ export default function Home() {
             onClick={clickHandler}
             isLoading={isLoading}
           >
-            Get my github wrapped
+            Get My github wrapped
           </Button>
         </Box>
       </Box>
