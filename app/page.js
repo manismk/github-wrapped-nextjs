@@ -9,67 +9,26 @@ import {
   InputLeftElement,
   Text,
 } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
-import { BottomBar, Brand, Result } from "../components";
 
 export default function Home() {
   const inputRef = useRef(null);
   const [error, setError] = useState(null);
+  const router = useRouter();
   const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
-  const resultRef = useRef(null);
 
-  const clickHandler = async () => {
-    const username = inputRef?.current?.value?.trim();
-    if (username?.length) {
+  const clickHandler = () => {
+    if (inputRef?.current?.value?.trim()?.length) {
       setLoading(true);
-      try {
-        const res = await fetch("/api/getData", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username }),
-        });
-        if (res.status === 200) {
-          const body = await res.json();
-          setData(body);
-          setLoading(false);
-        } else {
-          const text = await res.text();
-          setError(text);
-          setLoading(false);
-        }
-      } catch (e) {
-        setError("Something went wrong!");
-        setLoading(false);
-      }
+      router.push(`/${inputRef?.current?.value?.trim()}`);
     } else {
-      setError("Please enter valid github username");
+      setError("Please Enter valid github username");
       inputRef.current.value = "";
     }
   };
-
-  if (data) {
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" p="1rem">
-        <Box mt="3rem" textAlign="center">
-          <Box boxShadow="xl">
-            <Box p="2rem" pb="0.5rem" bg="#f3f4fa" ref={resultRef}>
-              <Result data={data} />
-              <Brand />
-            </Box>
-            <BottomBar
-              currentYear={currentYear}
-              data={data}
-              resultRef={resultRef}
-              onAnotherUserClick={() => setData(null)}
-            />
-          </Box>
-        </Box>
-      </Box>
-    );
-  }
 
   return (
     <>
@@ -82,7 +41,7 @@ export default function Home() {
             How did you contribute in {currentYear}
           </Text>
           <Text mt="5rem" fontSize="20px" fontWeight="600">
-            Get your total contriburtion, active days, longest streak, most
+            Get your Total contriburtion, Active days, longest streak, Most
             active day, month and more
           </Text>
           <InputGroup m="1rem auto" w="20rem">
@@ -99,12 +58,9 @@ export default function Home() {
                 boxShadow: "none",
               }}
               _hover={{ borderColor: "rgb(59, 55, 191)" }}
-              placeholder="Enter your github username"
+              placeholder="Enter your Github Username"
               onChange={() => {
                 error && setError(null);
-              }}
-              onKeyUp={(e) => {
-                if (e.key === "Enter") clickHandler();
               }}
             />
           </InputGroup>
@@ -123,7 +79,7 @@ export default function Home() {
             onClick={clickHandler}
             isLoading={isLoading}
           >
-            Get my github wrapped
+            Get My Github Wrapped
           </Button>
         </Box>
       </Box>
