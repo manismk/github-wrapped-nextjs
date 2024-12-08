@@ -12,13 +12,12 @@ import {
 import { useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { BottomBar, Brand, Result } from "../components";
-import { sample } from "../local";
 
 export default function Home() {
   const inputRef = useRef(null);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState(sample);
+  const [data, setData] = useState(null);
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
   const resultRef = useRef(null);
 
