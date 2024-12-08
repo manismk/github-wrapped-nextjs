@@ -52,10 +52,20 @@ export default function Home() {
 
   if (data) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" p="1rem">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        p={{ base: "0px", sm: "1rem" }}
+      >
         <Box mt="3rem" textAlign="center">
           <Box boxShadow="xl">
-            <Box p="2rem" pb="0.5rem" bg="#f3f4fa" ref={resultRef}>
+            <Box
+              p={{ base: "8px", sm: "2rem" }}
+              pb="0.5rem"
+              bg="#f3f4fa"
+              ref={resultRef}
+            >
               <Result data={data} />
               <Brand />
             </Box>
@@ -75,7 +85,7 @@ export default function Home() {
     <>
       <Box display="flex" justifyContent="center" alignItems="center" p="1rem">
         <Box mt="3rem" textAlign="center">
-          <Heading mt="3rem" as="h1" fontSize="48px">
+          <Heading mt="3rem" as="h1" fontSize={{ base: "36px", sm: "48px" }}>
             #GithubWrapped
           </Heading>
           <Text fontSize="20px" fontWeight="600" mt="8px">
@@ -85,7 +95,7 @@ export default function Home() {
             Get your total contriburtion, active days, longest streak, most
             active day, month and more
           </Text>
-          <InputGroup m="1rem auto" w="20rem">
+          <InputGroup m="1rem auto" w={{ base: "15rem", sm: "20rem" }}>
             <InputLeftElement pointerEvents="none" children={<FaGithub />} />
             <Input
               ref={inputRef}
@@ -119,7 +129,7 @@ export default function Home() {
             color="white"
             _hover={{ bg: "rgb(59, 55, 191)" }}
             _active={{ bg: "rgb(59, 55, 191)" }}
-            w="20rem"
+            w={{ base: "15rem", sm: "20rem" }}
             onClick={clickHandler}
             isLoading={isLoading}
           >
