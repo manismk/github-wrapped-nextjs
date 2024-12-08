@@ -4,7 +4,7 @@ import { theme } from "../styles/theme";
 
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html lang="en">
       <head />
       <body>
         <ChakraProvider theme={theme}>{children}</ChakraProvider>
