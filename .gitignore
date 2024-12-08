@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# local files
+local.js
+
 # production
 /build
 

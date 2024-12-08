@@ -8,8 +8,16 @@ import { WeekWiseGraph } from "./WeekWiseData";
 export const Result = ({ data }) => {
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
   return (
-    <Box w="750px" color="#000">
-      <Flex justifyContent="space-between" alignItems="center">
+    <Box w={{ base: "100%", sm: "450px", md: "750px" }} color="#000">
+      <Flex
+        flexDir={{
+          md: "row",
+          sm: "column",
+          base: "column",
+        }}
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <Text fontWeight="600" fontSize="22px" color="rgb(59, 55, 191)">
           #GithubWrapped - {currentYear}
         </Text>
@@ -22,7 +30,12 @@ export const Result = ({ data }) => {
           <Avatar size="sm" name={data?.actualName} src={data?.userImgUrl} />
         </Flex>
       </Flex>
-      <Grid gap="10px" gridTemplateColumns="70fr 30fr" mt="1.5rem" h="250px">
+      <Grid
+        gap="10px"
+        gridTemplateColumns={{ sm: "1fr", md: "70fr 30fr" }}
+        mt="1.5rem"
+        h={{ md: "250px" }}
+      >
         <Box bg="#fff" p="8px 16px" borderRadius="16px">
           <MonthWiseGraph monthData={data?.monthWiseCount} />
         </Box>
@@ -36,64 +49,92 @@ export const Result = ({ data }) => {
           <Text fontWeight="600" color="rgb(59, 55, 191)">
             Overall stats
           </Text>
-          <Flex gap="12px">
-            <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
-              <Icon as={VscGraphLine} boxSize="6" color="rgb(59, 55, 191)" />
-            </Center>
+          <Box
+            gap="10px"
+            display={{ base: "grid", md: "flex" }}
+            flexDir={{ md: "column" }}
+            gridTemplateColumns={{ base: "1fr 1fr 1fr" }}
+          >
             <Flex
-              flexDirection="column"
-              textAlign="left"
-              justifyContent="space-between"
+              gap="12px"
+              flexDir={{ base: "column", md: "row" }}
+              alignItems={{ base: "center" }}
             >
-              <Text fontSize="24px" fontWeight="700">
-                {data?.totalCount}
-              </Text>
-              <Text fontSize="12px" color="#aaa" fontWeight="600">
-                Total contributions
-              </Text>
+              <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
+                <Icon as={VscGraphLine} boxSize="6" color="rgb(59, 55, 191)" />
+              </Center>
+              <Flex
+                flexDirection="column"
+                textAlign={{ md: "left" }}
+                justifyContent="space-between"
+              >
+                <Text fontSize="24px" fontWeight="700">
+                  {data?.totalCount}
+                </Text>
+                <Text fontSize="12px" color="#aaa" fontWeight="600">
+                  Total contributions
+                </Text>
+              </Flex>
             </Flex>
-          </Flex>
-          <Flex gap="12px">
-            <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
-              <Icon
-                as={IoCalendarOutline}
-                boxSize="6"
-                color="rgb(59, 55, 191)"
-              />
-            </Center>
             <Flex
-              flexDirection="column"
-              textAlign="left"
-              justifyContent="space-between"
+              gap="12px"
+              flexDir={{ base: "column", md: "row" }}
+              alignItems={{ base: "center" }}
             >
-              <Text fontSize="24px" fontWeight="700">
-                {data?.activeDaysCount}
-              </Text>
-              <Text fontSize="12px" color="#aaa" fontWeight="600">
-                Total active days
-              </Text>
+              <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
+                <Icon
+                  as={IoCalendarOutline}
+                  boxSize="6"
+                  color="rgb(59, 55, 191)"
+                />
+              </Center>
+              <Flex
+                flexDirection="column"
+                textAlign={{ md: "left" }}
+                justifyContent="space-between"
+              >
+                <Text fontSize="24px" fontWeight="700">
+                  {data?.activeDaysCount}
+                </Text>
+                <Text fontSize="12px" color="#aaa" fontWeight="600">
+                  Total active days
+                </Text>
+              </Flex>
             </Flex>
-          </Flex>
-          <Flex gap="12px">
-            <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
-              <Icon as={IoRocketOutline} boxSize="6" color="rgb(59, 55, 191)" />
-            </Center>
             <Flex
-              flexDirection="column"
-              textAlign="left"
-              justifyContent="space-between"
+              gap="12px"
+              flexDir={{ base: "column", md: "row" }}
+              alignItems={{ base: "center" }}
             >
-              <Text fontSize="24px" fontWeight="700">
-                {data?.longestStreak?.streak}
-              </Text>
-              <Text fontSize="12px" color="#aaa" fontWeight="600">
-                Longest streak
-              </Text>
+              <Center bg="#f3f4fa" h="54px" w="54px" borderRadius="12px">
+                <Icon
+                  as={IoRocketOutline}
+                  boxSize="6"
+                  color="rgb(59, 55, 191)"
+                />
+              </Center>
+              <Flex
+                flexDirection="column"
+                textAlign={{ md: "left" }}
+                justifyContent="space-between"
+              >
+                <Text fontSize="24px" fontWeight="700">
+                  {data?.longestStreak?.streak}
+                </Text>
+                <Text fontSize="12px" color="#aaa" fontWeight="600">
+                  Longest streak
+                </Text>
+              </Flex>
             </Flex>
-          </Flex>
+          </Box>
         </Flex>
       </Grid>
-      <Grid gap="10px" gridTemplateColumns="65fr 35fr" mt="18px" h="200px">
+      <Grid
+        gap="10px"
+        gridTemplateColumns={{ sm: "1fr", md: "65fr 35fr" }}
+        mt="18px"
+        h={{ md: "200px" }}
+      >
         <Box bg="#fff" borderRadius="16px" p="8px">
           <Text mt="4px" mb="12px" fontWeight="600" color="rgb(59, 55, 191)">
             Activity stats
