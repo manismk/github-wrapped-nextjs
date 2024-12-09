@@ -116,6 +116,7 @@ export default function Home() {
               onKeyUp={(e) => {
                 if (e.key === "Enter") clickHandler();
               }}
+              autoFocus={true}
             />
           </InputGroup>
           {error && (
