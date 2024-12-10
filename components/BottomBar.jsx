@@ -42,7 +42,7 @@ export const BottomBar = ({
         _hover={{ background: "#fff" }}
         onClick={onAnotherUserClick}
       >
-        check for another user
+        Check for another user
       </Button>
     </Flex>
   );
