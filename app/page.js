@@ -134,7 +134,7 @@ export default function Home() {
             onClick={clickHandler}
             isLoading={isLoading}
           >
-            Get My github wrapped
+            Get my Github wrapped
           </Button>
         </Box>
       </Box>

@@ -180,7 +180,10 @@ const parseContributions = (htmlSrc, username, userDetails) => {
     }
     return acc;
   }, 0);
-  const longestStreak = dateWiseData.reduce(
+  const sortedData = [...dateWiseData].sort((a, b) =>
+    dayjs(a.date).isAfter(dayjs(b.date)) ? 1 : -1
+  );
+  const longestStreak = sortedData.reduce(
     (acc, curr) => {
       if (+curr.count) {
         acc.count++;

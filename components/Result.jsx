@@ -4,6 +4,7 @@ import { IoCalendarOutline, IoRocketOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { MonthWiseGraph } from "./MonthWiseData";
 import { WeekWiseGraph } from "./WeekWiseData";
+import dayjs from "dayjs";
 
 export const Result = ({ data }) => {
   const currentYear = process.env.NEXT_PUBLIC_CURR_YEAR || 2022;
@@ -162,7 +163,9 @@ export const Result = ({ data }) => {
                   {data?.maxCount?.count}
                 </Text>
                 <Text fontSize="14px" fontWeight="600">
-                  {data?.maxCount?.date}
+                  {dayjs(data?.maxCount?.date, "YYYY-MM-DD", true).format(
+                    "DD MMM"
+                  )}
                 </Text>
                 <Text fontSize="12px" color="#aaa" fontWeight="600">
                   Most activity day
